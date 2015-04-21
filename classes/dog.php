@@ -4,30 +4,40 @@ class Dog{
     private $name;
     private $race;
 
-    function __construct($name, $race)
-    {
+    function __construct($name, $race){
+
         $this->name = $name;
         $this->race = $race;
+
     }
 
-    public function bark($loudness = 'low')
-    {
+    public function bark($loudness = 'low'){
+
         if ($loudness == 'high') {
             echo 'BARK BARK BARK';
         }
-
         if ($loudness == 'low') {
             echo 'bark bark';
         }
+
     }
 
-    public function insertDog()
-    {
+    public function getDogByNameRace(){
+
+        $conn = Db::connect();
+        $query = "SELECT * from dogs WHERE name = '" . $this->name . "' AND race = '" . $this->race . "'";
+        $result = mysqli_query($conn, $query);
+        $row_count = $result->num_rows;
+        return $row_count;
+
+    }
+
+    public function insertDog(){
+
         $conn = Db::connect();
 
         if (!empty($conn)) {
             $query = "INSERT INTO dogs (name, race) VALUES ('" . $this->name . "', '" . $this->race . "')";
-
             if ($result = mysqli_query($conn, $query)) {
                 echo 'success';
             }
@@ -42,6 +52,7 @@ class Dog{
         } elseif ($value == 'name') {
             return $this->name;
         }
+
     }
 
 }
