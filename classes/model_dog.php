@@ -1,5 +1,5 @@
 <?php
-class Dog{
+class Model_Dog{
 
     private $name;
     private $race;

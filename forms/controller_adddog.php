@@ -31,7 +31,7 @@
      */
 
 
-    $hondje= new Dog($dogName,$dogRace);
+    $hondje= new Model_Dog($dogName,$dogRace);
 
     if (!$hondje->getDogByNameRace()){
         $hondje->insertDog();
