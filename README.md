@@ -22,6 +22,8 @@ Class:
        self:: verwijst naar de class. in de class kun je dus ook properties een waarde geven. Deze worden dan bijgehouden.
        Een static kan niets met een variabele van een object. andersom kan wel.
 
+- Het is aan de class om opbjecten op te halen en te retouneren, niet aan het object.
+
 
        composition : has a
        inheritance: is a
@@ -33,3 +35,4 @@ Class:
     like a normal class method (if it was not declared as private).
 __set() is run when writing data to inaccessible properties.
 __get() is utilized for reading data from inaccessible properties.
+
