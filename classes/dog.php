@@ -22,6 +22,23 @@ class Dog{
 
     }
 
+    /*
+    Dit 'getDogByNameRace' zou ik anders doen. Stel je voor je maakt een nieuw dog object en geeft hem een naam via de constructor. Deze methode zit dan op dat object, dat is vreemd. Je maakt er eerst een aan
+    en vervolgens ga je hem nog laden.
+    wat je beter kan doen is deze methode vervangen door een static methode die je forge noemt. Het is aan de class om dog opbjecten op te halen en te retouneren, niet aan het object.
+
+    public static function forge($name, $race) {
+
+        //1. haal je data op
+        //2. check of er data is: !empty(result)
+        //3. $dog = new Dog(bul hier met de data) in geval van data, anders een error returnen (google php / errors)
+        //4. return dog
+
+        // gebruiken van buitenaf: $droopie = Dog::forge('droopie', 'droopieRas')
+    }
+
+    */
+
     public function getDogByNameRace(){
 
         $conn = Db::connect();
@@ -32,6 +49,7 @@ class Dog{
 
     }
 
+    //ik zou niet de term Dog gebruiken hier, je zit immers al in de dog class. Het beste kan je deze save noemen. Zo zal het straks in het framework ook werken.
     public function insertDog(){
 
         $conn = Db::connect();
