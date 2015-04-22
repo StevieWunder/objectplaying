@@ -46,14 +46,15 @@ class Model_Dog{
         $query = "SELECT * from dogs WHERE name = '" . $name . "' AND race = '" . $race . "'";
         echo 'De query is : ' . $query . '<BR>';
         $result = mysqli_query($conn, $query);
-        if (!$result->num_rows){
+
+        // als we data hebben dan maken we een leeg hond model aan, vullen hem met data en returnen hem
+        if ($result->num_rows){
             $dog = new Model_Dog($name, $race);
-            echo 'Resultaat is empty';
+            return $dog;
         }
-        else{
-            $dog = $result;
-        }
-        return $dog;
+
+        // zo niet, pech gehad, we returnen null
+        return null;
     }
 
     //ik zou niet de term Dog gebruiken hier, je zit immers al in de dog class. Het beste kan je deze save noemen. Zo zal het straks in het framework ook werken.

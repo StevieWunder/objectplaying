@@ -33,8 +33,21 @@
      */
 
     if (!empty($dogName) &&!empty($dogRace)){
+
+        //De gebruiker heeft via een form een naam en een ras gestuurd. We  gaan op zoek naar een hond die hierbij past:
+
         $hondje = model_dog::forge($dogName,$dogRace);
-        //Ik doe nog even geen check of $hondje een object of een error is. Dus feitelijk werkt het nu als je een hond toevoegt die nog niet bestaat.
+
+        // Het kan zijn dat deze hond 'null' is, check model dog regel 55. IN dat geval hebben we niet zo'n hond.
+
+        // Hier checken we op:
+
+        if (empty($hondje)) {
+
+            $hondje = new Model_Dog($dogName,$dogRace);
+        }
+
+        // Nu weten we zeker dat we een hond hebben, of uit de database of een nieuwe, we kunnen nu opslaan.
         $hondje->save();
     }
     else{
