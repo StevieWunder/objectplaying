@@ -36,3 +36,6 @@ Class:
 __set() is run when writing data to inaccessible properties.
 __get() is utilized for reading data from inaccessible properties.
 
+- Valideren van user input is een heel belangrijk iets in programmeren.
+  Je moet te allen tijde controleren of er waardes zijn en of ze van het type zijn dat je verwacht.
+  Dit ook / vooral ivm veiligheid.
