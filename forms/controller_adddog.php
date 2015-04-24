@@ -14,19 +14,6 @@
     $dogName =$_POST['name'];
     $dogRace =$_POST['race'];
 
-    /*
-     *
-     * Hier eerst checken of deze waardes wel bestaan.
-     *  if (!empty($dogName && !empty(...))){
-           dan pas inserten. nders gaat het mis.
-        }
-
-
-
-     *
-     *
-     */
-
     if (!empty($dogName) &&!empty($dogRace)) {
 
         //De gebruiker heeft via een form een naam en een ras gestuurd. We  gaan op zoek naar een hond die hierbij past:
