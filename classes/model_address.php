@@ -1,8 +1,20 @@
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: tom
- * Date: 24-04-15
- * Time: 08:03
- * To change this template use File | Settings | File Templates.
- */
+class Model_Address{
+
+    public $street;
+    public $streetNumber;
+    public $postalCode;
+    public $city;
+
+    function __construct($street, $streetNumber, $postalCode, $city){
+        $this->street = $street;
+        $this->streetNumber = $streetNumber;
+        $this->postalCode = $postalCode;
+        $this->city = $city;
+    }
+
+    public function getAddress(){
+        return($this->street . ' ' . $this->streetNumber . ', ' . $this->postalCode. ' ' .$this->city);
+    }
+
+}

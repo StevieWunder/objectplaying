@@ -2,8 +2,12 @@
 class Model_Shelter extends Model_Building{
 
     private $name;
-    private $opvangMogelijk;
-    private $adoptieMogelijk;
+    private $shelterPossible;
+    private $adoptionPossible;
+    public $employee;
+    // waarschijnlijk zijn er meerdere employees, dus dan krijg je denk ik zoiets:
+    //private $employee = array();
+    //private $dog = array();
 
     /*
 
@@ -40,37 +44,24 @@ class Model_Shelter extends Model_Building{
 
 
 
-    function __construct($name, $adoptieMogelijk=0, $opvangMogelijk=0, $width, $length, $height, $street, $streetNumber, $postalCode, $city){
-
+    function __construct($volume, $address, $name, $employee, $shelterPossible=0, $adoptionPossible=0){
+        $this->address = $address;
+        $this->volume = $volume;
         $this->name=$name;
-        $this->adoptieMogelijk =$adoptieMogelijk;
-        $this->opvangMogelijk =$opvangMogelijk;
-
-
-        //onderstaande gaat veranderen door $this->dimension & $this->address. Dezet staan in building gedefinieerd.
-        $this->width=$width;
-        $this->length=$length;
-        $this->height=$height;
-        $this->street=$street;
-        $this->$streetNumber=$streetNumber;
-        $this->postalCode=$postalCode;
-        $this->city=$city;
+        $this->employee = $employee;
+        $this->adoptionPossible =$adoptionPossible;
+        $this->shelterPossible = $shelterPossible;
     }
 
-    //is dit public of private?
-    function getVolume(){
-        return($this->width * $this->length * $this->height);
-    }
+    function __get($value){
 
-    function __GET($value){
+        if ($value == 'adoptionPossible'){
 
-        if ($value == 'adoptieMogelijk'){
-
-            if (!$this->adoptieMogelijk){
+            if (!$this->adoptionPossible){
 
                 return 'In dit asiel is helaas geen adoptie mogelijk';
 
-            }elseif($this->adoptieMogelijk){
+            }elseif($this->adoptionPossible){
 
                 return 'In dit asiel is adoptie mogelijk';
             }
@@ -78,13 +69,13 @@ class Model_Shelter extends Model_Building{
 
             return $this->name;
 
-        }elseif ($value == 'opvangMogelijk') {
+        }elseif ($value == 'shelterPossible') {
 
-            if (!$this->opvangMogelijk) {
+            if (!$this->shelterPossible) {
 
                 return 'In dit asiel is helaas geen opvang mogelijk';
 
-            } elseif ($this->opvangMogelijk) {
+            } elseif ($this->shelterPossible) {
 
                 return 'In dit asiel is opvang mogelijk';
             }
