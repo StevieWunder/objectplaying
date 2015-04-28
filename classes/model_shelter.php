@@ -5,44 +5,9 @@ class Model_Shelter extends Model_Building{
     private $shelterPossible;
     private $adoptionPossible;
     public $employee;
-    // waarschijnlijk zijn er meerdere employees, dus dan krijg je denk ik zoiets:
-    //private $employee = array();
-    //private $dog = array();
 
-    /*
-
-    Onderstaande constructor functie heeft erg veel parameters. Dat werkt wel maar werkt in de praktij niet erg fijn.
-    Ook in het kader van 'object thinking' kunnen we dingen hier versimpelen. In dit geval zou ik voorstllen dat we een
-    Address Object gaan meesturen en een Dimension Object.
-
-    We gaan dan van:
-
-    function __construct($name, $adoptieMogelijk=0, $opvangMogelijk=0, $width, $length, $height, $street, $streetNumber, $postalCode, $city){
-
-    naar:
-
-    function __construct($name, $dimension, $adress, $adoptieMogelijk=0, $opvangMogelijk=0)
-
-    Opmerkingen:
-
-    - Zorg dat je in het engels blijft werken qua parameters.
-    - Je ziet duidelijk welke constructor functie leesbaarder is, nietwaar?
-    - Ik heb alvast twee nieuwe modellen aangemaakt: address en dimension, deze kan je verder afmaken.
-    - Zorg dat je in building twee extra class variabelen toevoegd: $dimension en $address en stel deze in in de constructor zoals je ook de naam instelt.
-    - Aan de buitenkant initieer je een shelter op deze manier:
-
-    $dimension = new Dimension(...)
-    $address = new Address(..)
-    $shelter = new Shelter('name', $address, $dimension, .., ..);
-
-    Dat is mooier (en later beter te snappen als je terug kijkt) dan:
-
-    $shelter = new Shelter($name, $adoptieMogelijk=0, $opvangMogelijk=0, $width, $length, $height, $street, $streetNumber, $postalCode, $city)
-
-
-     */
-
-
+    private $employees = array();
+    private $dogs = array();
 
     function __construct($volume, $address, $name, $employee, $shelterPossible=0, $adoptionPossible=0){
         $this->address = $address;
@@ -52,6 +17,35 @@ class Model_Shelter extends Model_Building{
         $this->adoptionPossible =$adoptionPossible;
         $this->shelterPossible = $shelterPossible;
     }
+
+    public function addDog($dog)
+    {
+        //push hier de dog in de dogs array, zoek op: array push php
+    }
+
+    public function removeDog($dog)
+    {
+        //loop met een foreach loop door de dogs array
+
+        foreach($this->dogs as $key => $value) {
+
+            // if dog is gelijk aan value\
+            // remove die dog uit de array
+        }
+    }
+
+    public function getDogByName($name)
+    {
+        //loop door de dogs en zoek op de naam
+        //return deze.
+    }
+
+    //hetzelfde kan je doen voor eployees.
+    // je kunt ook een maximaal aantal honder per employee toelaten. Als er maar een mens is dan kunnen er bv max drie honden worden toegevoegd.
+
+    // check ook http://laravel.com/
+    // hoe het beste te installeren? nieuwe repo klaar zetten etc
+
 
     function __get($value){
 
