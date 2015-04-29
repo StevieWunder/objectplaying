@@ -8,6 +8,8 @@ class Model_Shelter extends Model_Building{
     private $employees = array();
     private $dogs = array();
 
+    private static $reasonRemoved = array(0 =>'Deceased', 1 =>'Adopted');
+
     public static $numberOfDogs = 0;
     public static $numberOfEmployees = 0;
     public static $maximumNumberOfDogsPerEmployee = 3;
@@ -48,17 +50,24 @@ class Model_Shelter extends Model_Building{
 
     }
 
-    public function removeDog($dog){
+    public function removeDog($dog, $reason=1){
         //loop met een foreach loop door de dogs array
-
+        $found=0;
         foreach($this->dogs as $key => $value) {
 
-            // if dog is gelijk aan value\
-            // remove die dog uit de array
-            // dogcount--
+            if ($this->dogs[$key]->name==$dog->name){
 
+                unset($this->dogs[$key]);
+                self::$numberOfDogs--;
+                $found=1;
+                echo 'Dog ' . $dog->name . ' succesfully removed from Shelter, with reason ' . self::$reasonRemoved[$reason].'<br />';
+                echo 'The number of dogs in shelter \'' . $this->name . '\' has decreased to ' . self::$numberOfDogs . ' dogs.<br />';
+            }
         }
 
+        if (!$found){
+            echo 'This doggy with name ' . $dog->name . ' does not exist within this Shelter<br />';
+        }
     }
 
 
@@ -67,6 +76,13 @@ class Model_Shelter extends Model_Building{
         //loop door de dogs en zoek op de naam
         //return deze.
 
+        foreach($this->dogs as $key => $value) {
+            if ($this->dogs[$key]->name==$name){
+                return($this->dogs[$key]);
+            }
+        }
+
+        return null;
     }
 
     public function showAllDogInfo(){
