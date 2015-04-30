@@ -6,18 +6,11 @@
     include 'classes/model_dog.php';
     include 'classes/model_building.php';
     include 'classes/model_shelter.php';
-    include 'classes/model_layout.php';
 
-    //onderstaande 4 constanten zijn puur en alleen voor testdoeleinden. Deze kunnen op deze plek gewijzigd worden
-    $employeeCount=4;
-    $dogCount=25;
+    $employeeCount=3;
+    $dogCount=20;
     $opTeZoekenNaam1 = 'Dog Doe';
     $opTeZoekenNaam2 = 'Tiesto';
-
-
-//    echo '<a href="forms/adddog.html">Add a dog in the database</a><P>';
-
-
 
 
     //aanmaken van Shelter
@@ -25,14 +18,6 @@
     $shelterAddress = new Model_Address('Barkstreet', 1, '12345', 'DogVille');
     $shelterVolume = new Model_Volume(3,4.5,8);
     $dogShelter = new Model_Shelter($shelterVolume, $shelterAddress, 'The happy dog', 0, 1);
-    echo $dogShelter->showAllDogInfo();
-    $dogShelter->showAllEmployeeInfo();
-    Model_Layout::lineBreak();
-
-    //aanmaken van hond voordat er Employees zijn:
-
-    $dog1 = new Model_Dog('Bogey','Boogiewoogie dog', 8);
-    $dogShelter->addDog($dog1);
 
     //aanmaken van employees
 
@@ -50,10 +35,12 @@
         $dogShelter->addEmployee($empArray[$i]);
     }
 
-    Model_Layout::lineBreak();
+
     echo '<p />';
     //aanmaken van honden nadat er employees zijn opgenomen
 
+    $dog1 = new Model_Dog('Bogey','Boogiewoogie dog', 8);
+    $dogShelter->addDog($dog1);
     $dog2 = new Model_Dog('Chuck Berry Doggy the third','Boogiewoogie dog', 8);
     $dogShelter->addDog($dog2);
     $dog3 = new Model_Dog('Tiesto','Trance dog', 10);
@@ -72,23 +59,18 @@
         $dogShelter->addDog($dogArray[$i]);
     }
 
-    //doe iets met bovenstaande info
+    echo $dogShelter->getInfo();
 
-    echo 'De gegevens van hondenasiel met naam \'' . $dogShelter->name . '\' zijn:<br />';
-    Model_Layout::lineBreak();
-    echo 'Het adres is ' . $dogShelter->address->getAddress() . '<br />';
-    echo $dogShelter->adoptionPossible . '.<br />';
-    echo $dogShelter->shelterPossible . '.<br />';
-    echo 'Het volume van het hondenAsiel is:' . $dogShelter->volume->getVolume() . ' kuub.<br />';
-    Model_Layout::lineBreak();
-    echo $dogShelter->showAllDogInfo();
-    Model_Layout::lineBreak('Alle Employee info');
-    $dogShelter->showAllEmployeeInfo();
-    Model_Layout::lineBreak('Honjes verwijderen');
-    $dogShelter->removeDog($dog7,1);
-    $dogShelter->removeDog($dogArray[3],1);
-    $dogShelter->removeDog($dogArray[$dogCount],0);
-    Model_Layout::lineBreak('Hondjes opzoeken');
+    if ($dogShelter->removeDog($dog7)){
+
+        echo 'The following dog is removed from the shelter:<br />';
+        echo $dog7->getInfo();
+        echo Model_Shelter::REASON_ADOPTED .'<br />' ;
+
+    }
+
+    $dogShelter->removeDog($dogArray[3]);
+    $dogShelter->removeDog($dogArray[$dogCount]);
 
     $findDoggie1 = $dogShelter->getDogByName($opTeZoekenNaam1);
     if (!empty($findDoggie1)){
@@ -116,5 +98,6 @@
 
     }
 
+//    echo '<a href="forms/adddog.html">Add a dog in the database</a><P>';
 
 ?>

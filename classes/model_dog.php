@@ -40,6 +40,14 @@ class Model_Dog{
 
     }
 
+    public function getInfo(){
+
+        return ('Naam: ' . $this->name . '. <br />' .
+                'Ras: '. $this->race . '. <br />' .
+                'De hond blaft op level '. $this->bark());
+
+    }
+
 }
 
 
@@ -47,7 +55,9 @@ class Model_Dog{
 /*
  * public static function forge($name, $race, $loudness){
 
-        $conn = Db::connect();
+        $conn = new Model_Db()
+        $conn->connect();
+
         $query = "SELECT * from dogs WHERE name = '" . $name . "' AND race = '" . $race . "'";
         $result = mysqli_query($conn, $query);
 

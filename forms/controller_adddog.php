@@ -1,6 +1,6 @@
 <?php
     include '../classes/model_dog.php';
-    include '../classes/db.php';
+    include '../classes/model_db.php';
 ?>
 <html>
 <head>
@@ -26,7 +26,7 @@
         // SP: En in het geval we niet zo'n hond hebben gaan we dus inserten, want hij bestaat nog niet.
 
         if (empty($vindHondje)) {
-            $hondje = new Model_Dog($dogName, $dogRace);
+            $hondje = new Model_Dog($dogName, $dogRace, $loudness);
             //Onderstaande comment van TOM even laten staan: Is nu niet van belang omdat we alleen willen saven als het gaat om een hond die nog niet bestaat in dit voorbeeld.
             //In een ander voorbeeld zullen we kijken dat we de hond gaan updaten indien deze is gevonden.
 
