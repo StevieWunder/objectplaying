@@ -6,12 +6,14 @@
     include 'classes/model_dog.php';
     include 'classes/model_building.php';
     include 'classes/model_shelter.php';
+    include 'classes/model_db.php';
 
     $employeeCount=3;
     $dogCount=20;
     $opTeZoekenNaam1 = 'Dog Doe';
     $opTeZoekenNaam2 = 'Tiesto';
 
+    Model_Db::connect();
 
     //aanmaken van Shelter
 
@@ -98,6 +100,7 @@
 
     }
 
+    Model_db::connect();
 //    echo '<a href="forms/adddog.html">Add a dog in the database</a><P>';
 
 ?>
