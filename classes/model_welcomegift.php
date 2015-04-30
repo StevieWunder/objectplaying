@@ -2,6 +2,10 @@
 class Model_WelcomeGift{
     private $gift;
 
+    //definieer constantes voor je type
+    //TYPE_SAUna = 'type_sauna'
+    // gebruik deze binnen en buiten je class
+
     function __construct(){
         $this->gift = rand(1,3);
     }
