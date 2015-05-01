@@ -1,5 +1,8 @@
 <?php
-class Model_Employee{
+
+require_once '/../interfaces/interface_weatherforecastregisterable.php';
+
+class Model_Employee implements Interface_WeatherForecastRegisterable{
 
         private $name;
         public $address;
@@ -22,7 +25,7 @@ class Model_Employee{
         return ('Naam: ' . $this->name . '. <br />' .
                 'Functie: '. $this->jobTitle . '. <br />' .
                 'Het woonadres is: ' . $this->address->getInfo() . '. <br />' .
-                'Het salaris is: ' . $this->salary . '. <br />' .
+                'Het salaris is: ' . $this->__get('salary') . '. <br />' .
                 'Het welkomstgeschenk is: '. $this->welcomeGift->gift . '.<br />');
 
     }
@@ -46,6 +49,12 @@ class Model_Employee{
                 return $this->jobTitle;
 
         }
+
+    }
+
+    public function notify($weather){
+
+        echo 'Employee '. $this->name .' krijgt weerbericht: ' . $weather . '<br />';
 
     }
 

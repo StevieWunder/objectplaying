@@ -13,7 +13,8 @@
     $opTeZoekenNaam1 = 'Dog Doe';
     $opTeZoekenNaam2 = 'Tiesto';
 
-    Model_Db::connect();
+    //Verder met deze manier van connectie nog niks gedaan:
+    $connectionding = Model_Db::connect();
 
     //aanmaken van Shelter
 

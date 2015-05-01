@@ -1,5 +1,8 @@
 <?php
-class Model_Dog{
+
+require_once '/../interfaces/interface_weatherforecastregisterable.php';
+
+class Model_Dog implements Interface_WeatherForecastRegisterable{
 
     private $name;
     private $race;
@@ -47,6 +50,12 @@ class Model_Dog{
                 'De hond blaft op level '. $this->bark());
 
     }
+
+    public function notify($weather){
+
+        echo 'Hondje '. $this->name .' krijgt weerbericht: ' . $weather . '<br />';
+    }
+
 
 }
 
