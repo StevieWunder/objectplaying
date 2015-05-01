@@ -49,17 +49,9 @@ class Model_Shelter extends Model_Building{
 
             reset($this->employees);
 
-            foreach ($this->employees as $key => $value) {
+            foreach ($this->employees as $employee) {
 
-                //$this->employees[$key]->getInfo(); moet worden $value->getInfo()
-
-                //Je kunt ook dit doen:
-
-                //foreach ($this->employees as $employee) {
-                //    $infoString .= $employee->getInfo();
-                //}
-
-                $infoString .= $this->employees[$key]->getInfo();
+                $infoString .= $employee->getInfo();
 
             }
         }
@@ -117,11 +109,11 @@ class Model_Shelter extends Model_Building{
 
             //zelfde als hierboven (foreach $this->dogs as $dog, niet met de key weer in dearray gaan zoeken.
 
-            foreach ($this->dogs as $key => $value) {
+            foreach ($this->dogs as $dog) {
 
-                if ($this->dogs[$key]->name == $name) {
+                if ($dog->name == $name) {
 
-                    return ($this->dogs[$key]);
+                    return ($dog);
 
                 }
             }
@@ -152,10 +144,11 @@ class Model_Shelter extends Model_Building{
             $infoString = '';
             reset($this->dogs);
 
-            foreach($this->dogs as $key => $value){
+            foreach($this->dogs as $dog){
 
                 //same same
-                $infoString .= $this->dogs[$key]->getInfo();
+
+                $infoString .= $dog->getInfo();
 
             }
 
@@ -183,7 +176,7 @@ class Model_Shelter extends Model_Building{
 
         return ('Naam: ' . $this->name . '. <br />' .
             $this->getValues('adoptionPossible') . '.<br />' .
-            $this->getValues('shelterPossisble') . '.<br />'.
+            $this->getValues('shelterPossible') . '.<br />'.
             $this->getAllEmployeeInfo()) .
             $this->getAllDogInfo();
 
